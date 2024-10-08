@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PacientesForm = ({agregarPaciente}) => {
   const [name, setName] = useState("");
@@ -16,11 +16,17 @@ const PacientesForm = ({agregarPaciente}) => {
     setDiagnostico("");
   };
 
+
+
+  // useEffect(() => {
+  //   localStorage.setItem("registro", JSON.stringify(agregarPaciente));
+  // }, [agregarPaciente]);
+
   return (
     <form onSubmit={handleSubmit} className="mb-3">
       <div className="mb-3">
         <label className="form-label">Nombre</label>
-        <input type="text" className="form-control" placeholder="Nombre del paciente" value={name} onChange={(e) => setName(e.target.value)} required />
+        <input type="text" className="form-control" placeholder="Nombre del paciente" value={name} onChange={(e) => setName(e.target.value)} required />  
       </div>
 
       <div className="mb-3">
@@ -39,7 +45,7 @@ const PacientesForm = ({agregarPaciente}) => {
       </div>
 
       <button type="submit" className="btn btn-primary">Agregar Paciente</button>
-
+        
     </form>
   )
 }
