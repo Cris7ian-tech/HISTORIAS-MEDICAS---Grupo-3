@@ -1,10 +1,22 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PacientesForm from './components/PacientesForm'
 import PacientesLista from './components/PacientesLista'
 function App() {
   const [pacientes, setPacientes] = useState([])
   const [editandoIndex, setEditandoIndex] = useState(null)
+
+  //intento de implementacion LocalStorage
+  useEffect(() => {
+    const pacientesAlmacenados = localStorage.getItem('pacientes')
+    if (pacientesAlmacenados) {
+      setPacientes(JSON.parse(pacientesAlmacenados))
+    }
+  }, []);
+  //a ver si guarda...
+  // useEffect(() => {
+  //   localStorage.setItem('pacientes', JSON.stringify(pacientes))  
+  // }, [pacientes]);
 
   const handleAgregarPaciente = (nuevoPaciente) => {
     if (editandoIndex !== null) {
@@ -24,7 +36,6 @@ function App() {
   
   return (
     <>
-      <h1>Grupo 3 domingo se reune...😜</h1>
       <div className="container">
         <h1>Demo Manejo de Pacientes</h1>
         <PacientesForm 
