@@ -1,10 +1,23 @@
 import { useState, useEffect } from "react";
 
-const PacientesForm = ({agregarPaciente}) => {
+const PacientesForm = ({agregarPaciente, editandoPaciente}) => {
   const [name, setName] = useState("");
   const [apellido, setApellido] = useState("");
   const [edad, setEdad] = useState("");
   const [diagnostico, setDiagnostico] = useState("");
+
+  //cargar datos al editar 
+  useEffect(() => {
+    if (editandoPaciente) {
+      setName(editandoPaciente.name);
+      setApellido(editandoPaciente.apellido);
+      setEdad(editandoPaciente.edad);
+      setDiagnostico(editandoPaciente.diagnostico);
+    }
+  }, [editandoPaciente]);
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +58,7 @@ const PacientesForm = ({agregarPaciente}) => {
       </div>
 
       <button type="submit" className="btn btn-primary">Agregar Paciente</button>
-        
+        {/* { editandoPaciente ? `agregando paciente...❗ ` : `Paciente agregado ✔`} */}
     </form>
   )
 }
