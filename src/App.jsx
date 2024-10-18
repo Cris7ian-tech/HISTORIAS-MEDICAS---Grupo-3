@@ -1,7 +1,10 @@
-import './App.css'
+import TablaPacientes from './components/TablaPacientes'
 import { useState, useEffect } from 'react'
 import PacientesForm from './components/PacientesForm'
 import PacientesLista from './components/PacientesLista'
+import './App.css'
+
+
 function App() {
   const [pacientes, setPacientes] = useState([])
   const [editandoIndex, setEditandoIndex] = useState(null)
@@ -44,6 +47,11 @@ function App() {
         />
         <PacientesLista pacientes={pacientes} editarPaciente={handleEditarPaciente}
         />
+        <br />
+        <hr />
+        <TablaPacientes />
+        
+
       </div>
     </>
   )
